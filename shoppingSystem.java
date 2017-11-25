@@ -1,15 +1,19 @@
-import java.util.Scanner;
+import java.util.*;
 
 public class shoppingSystem {
-	
-	 public String ID;
-	 public String password;
-    
-	 Scanner kb = new Scanner(System.in);//input from keyboard
 	 
+	public static ArrayList<account> arraylist;
+	
+	public shoppingSystem(){
+		arraylist = new ArrayList<account>();
+	}
 	 
 	
 	public boolean login(){
+		Scanner kb = new Scanner(System.in);//input from keyboard
+		
+		String ID;
+		String password;
 		
 		System.out.println("Input User ID:");
 		ID = kb.nextLine();
@@ -22,10 +26,11 @@ public class shoppingSystem {
 		return verification;		
 	}
 	
-	public void reister(){
+	public void register(){
 		String password_final = "None";
 		String username = "None";
 		
+		//get the user name from console
 		Scanner scan_register = new Scanner(System.in);
 		boolean usernameconfirm = false;
 		while(!usernameconfirm){
@@ -51,7 +56,7 @@ public class shoppingSystem {
 			}
 
 		
-		
+		//get the password from console
 		boolean passwordcorrect = false;
 		while(!passwordcorrect){
 			System.out.println("Please provide a password");
@@ -67,8 +72,29 @@ public class shoppingSystem {
 			}
 		}
 		
-		System.out.println(username+" "+ password_final);
+		//create new account.
+		if(checkAvailability(username) == false){
+			account new_account = new account(username, password_final);
+			arraylist.add(new_account);
+			
+		}
+		else{
+			System.out.println("Username not available. Please select a new username ^-^");
+			register();
+		}
+
 		scan_register.close();
 		
+	}
+	
+	private boolean checkAvailability(String username){
+		boolean Availability = false;
+		for(account c1 : arraylist){
+			if(c1.username.equals(username)){
+				Availability = true;
+				break;
+			}
+		}
+		return Availability;
 	}
 }
