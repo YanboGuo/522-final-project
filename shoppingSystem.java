@@ -1,100 +1,128 @@
-import java.util.*;
+package ss;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class shoppingSystem {
+		 
+	 public static ArrayList<account> arraylist;
 	 
-	public static ArrayList<account> arraylist;
-	
-	public shoppingSystem(){
-		arraylist = new ArrayList<account>();
-	}
-	 
-	
-	public boolean login(){
-		Scanner kb = new Scanner(System.in);//input from keyboard
-		
-		String ID;
-		String password;
-		
-		System.out.println("Input User ID:");
-		ID = kb.nextLine();
-		
-		System.out.println("Input password:");
-		password = kb.nextLine();
-
-		boolean verification = true;
-		
-		return verification;		
-	}
-	
-	public void register(){
-		String password_final = "None";
-		String username = "None";
-		
-		//get the user name from console
-		Scanner scan_register = new Scanner(System.in);
-		boolean usernameconfirm = false;
-		while(!usernameconfirm){
-			System.out.print("Please provide a username:");
-			username = scan_register.nextLine();
-		
-			boolean entercorrect = false;
-			while(!entercorrect){
-				System.out.println("Do you confrim your username as:" + username +"?" + "Please answer 'Y' for yes or 'N' for no");
-				String checkinput = scan_register.nextLine();
-					if(checkinput.equals("Y")){
-						usernameconfirm = true;
-						entercorrect = true;
-					}
-					else if(checkinput.equals("N")){
-						entercorrect = true;
-					}
-					else{
-						System.out.println("Wrong input. Do you confirm your username? Please enter 'Y' or 'N'.");
-					
-					}
-				}
-			}
-
-		
-		//get the password from console
-		boolean passwordcorrect = false;
-		while(!passwordcorrect){
-			System.out.println("Please provide a password");
-			String password_first = scan_register.nextLine(); 
-			System.out.println("Please reenter your password");
-			String password_second = scan_register.nextLine();
-			if(password_second.equals(password_first)){
-				passwordcorrect = true;
-				password_final = password_second;
-				}
-			else{
-				System.out.println("Two password don't match. Please enter your password again");
-			}
+	 public shoppingSystem(){
+			arraylist = new ArrayList<account>();
 		}
-		
-		//create new account.
-		if(checkAvailability(username) == false){
-			account new_account = new account(username, password_final);
-			arraylist.add(new_account);
+	 	 
+	 public void register(){
+			String password_final = "None";
+			String username = "None";
+			
+			//get the user name from console
+			Scanner scan_register = new Scanner(System.in);
+			boolean usernameconfirm = false;
+			while(!usernameconfirm){
+				System.out.print("Please provide a username:");
+				username = scan_register.nextLine();
+			
+				boolean entercorrect = false;
+				while(!entercorrect){
+					System.out.println("Do you confrim your username as:" + username +"?" + "Please answer 'Y' for yes or 'N' for no");
+					String checkinput = scan_register.nextLine();
+						if(checkinput.equals("Y")){
+							usernameconfirm = true;
+							entercorrect = true;
+						}
+						else if(checkinput.equals("N")){
+							entercorrect = true;
+						}
+						else{
+							System.out.println("Wrong input. Do you confirm your username? Please enter 'Y' or 'N'.");
+						
+						}
+					}
+				}
+
+			
+			//get the password from console
+			boolean passwordcorrect = false;
+			while(!passwordcorrect){
+				System.out.println("Please provide a password");
+				String password_first = scan_register.nextLine(); 
+				System.out.println("Please reenter your password");
+				String password_second = scan_register.nextLine();
+				if(password_second.equals(password_first)){
+					passwordcorrect = true;
+					password_final = password_second;
+					}
+				else{
+					System.out.println("Two password don't match. Please enter your password again");
+				}
+			}
+			
+			//create new account.
+			if(checkAvailability(username) == false){
+				account new_account = new account(username, password_final);
+				arraylist.add(new_account);
+				
+			}
+			else{
+				System.out.println("Username not available. Please select a new username ^-^");
+				register();
+			}
+
+			scan_register.close();
 			
 		}
-		else{
-			System.out.println("Username not available. Please select a new username ^-^");
-			register();
-		}
-
-		scan_register.close();
 		
-	}
-	
-	private boolean checkAvailability(String username){
-		boolean Availability = false;
-		for(account c1 : arraylist){
-			if(c1.username.equals(username)){
-				Availability = true;
-				break;
+		private boolean checkAvailability(String username){
+			boolean Availability = false;
+			for(account c1 : arraylist){
+				if(c1.username.equals(username)){
+					Availability = true;
+					break;
+				}
 			}
+			return Availability;
 		}
-		return Availability;
-	}
+	
+	 
+	 public void login(){
+		 
+		 String username;
+		 String password;
+		 boolean redo1 = true;		 
+		 Scanner kb = new Scanner(System.in);//input from keyboard
+		 //account c = new account(username, password);
+		 
+	  while (redo1){
+		
+		    System.out.println("Input Username:");
+		    username = kb.nextLine();
+		    boolean redo2 = true;
+		    		    
+		    // search in the account ArrayList to find targeted username
+		    if (c.find(username)){
+	        redo1 = false;} //find registered username, can login and input password
+		    else {
+		    	redo1 = true;// not find registered username, reenter username
+		    }
+		    
+		    // verify the input password of targeted account
+		    while(redo2){
+		          System.out.println("Input password:");
+		          password = kb.nextLine();
+		          
+		          account c = new account(username, password);
+		          if(c.verify(password)){
+		        	  redo2 = false;
+		          }else{
+		        	  redo2 = true;
+		          }
+		          
+		     }  //end while 2
+	    }  //end while 1				
+	  }  //end login
+			
 }
+
+
+
+
+
