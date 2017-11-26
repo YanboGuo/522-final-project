@@ -25,6 +25,7 @@ public class shoppingSysten {
 			}
 			else if (input.equals("S")){
 				System.out.println("Sign in");
+				shoppingSysteminstance.login();
 				redo = false;
 			}
 			else{
