@@ -60,14 +60,14 @@ public class shoppingSystem {
 			if(checkAvailability(username) == false){
 				account new_account = new account(username, password_final);
 				arraylist.add(new_account);
-				
+				System.out.println(arraylist.size());
 			}
 			else{
 				System.out.println("Username not available. Please select a new username ^-^");
 				register();
 			}
 
-			scan_register.close();
+			//scan_register.close();
 			
 		}
 		
@@ -87,39 +87,33 @@ public class shoppingSystem {
 		 
 		 String username;
 		 String password;
-		 boolean redo1 = true;		 
+		 boolean redo1 = true;	
 		 Scanner kb = new Scanner(System.in);//input from keyboard
-		 //account c = new account(username, password);
 		 
-	  while (redo1){
-		
-		    System.out.println("Input Username:");
-		    username = kb.nextLine();
-		    boolean redo2 = true;
-		    		    
-		    // search in the account ArrayList to find targeted username
-		    if (c.find(username)){
-	        redo1 = false;} //find registered username, can login and input password
-		    else {
-		    	redo1 = true;// not find registered username, reenter username
-		    }
-		    
-		    // verify the input password of targeted account
-		    while(redo2){
-		          System.out.println("Input password:");
-		          password = kb.nextLine();
-		          
-		          account c = new account(username, password);
-		          if(c.verify(password)){
-		        	  redo2 = false;
-		          }else{
-		        	  redo2 = true;
-		          }
-		          
-		     }  //end while 2
-	    }  //end while 1				
-	  }  //end login
+		 
+		while(redo1){
 			
+			System.out.println("Input Username:");
+			username = kb.nextLine();
+			
+			System.out.println("Input password:");
+	        password = kb.nextLine();
+	        
+	        account c = new account(username, password);
+	        
+	        if (c.find(username)){
+	        	
+	        	if (c.verify(password)){
+		        redo1 = false;
+		        System.out.println("login successfully");
+		        break;
+		        
+	        	}else{System.out.println("password not correct");}
+	        	
+	        }else{System.out.println("username not found");} 
+									
+		}
+	 } 			
 }
 
 
