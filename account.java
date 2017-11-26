@@ -16,11 +16,12 @@ public class account {
 	public boolean verify(String pd){
 		this.password = pd;
 		boolean t = false;
-		new shoppingSystem();
-		for(account c1 : shoppingSystem.arraylist){
-			  if(c1.username == username){
-				 if(c1.password == password){
+		
+		for(account c1 : shoppingSystem.arraylist){	    
+			  if(c1.username.equals(username)){
+				 if(c1.password.equals(password)){
 					t = true;
+					break;
 				 }
 			  }
 		}  	
@@ -31,9 +32,12 @@ public class account {
 		this.username = id;
 		boolean t = false;
 		
-		new shoppingSystem();
+		//new shoppingSystem();
 		for(account c1 : shoppingSystem.arraylist){
-			 t = (c1.username == username) ;							
+			 if(c1.username.equals(username) ){				 
+				 t = true;
+				 break;
+			 };							
 		}		
 		return t;
    }
