@@ -6,13 +6,28 @@ import com.google.java.contract.Requires;
 public class shoppingSystem {
 	 
 	public static ArrayList<account> arraylist;
-	private static ArrayList<products> prodarrlist;
-	
+	public static Home web = new Home();
 	private Scanner scan_register;
 	
 	public shoppingSystem(){
 		arraylist = new ArrayList<account>();
 	}
+	
+public void runSystem(){
+	
+	products p1 = new products("Apple",2.0);
+	products p2 = new products("Orange",3.6);
+	products p3 = new products("Pear",4.3);
+	products p4 = new products("Grape",2.7);
+	products p5 = new products("Watermelon",2.6);
+	products p6 = new products("Peach",5.8);
+	web.addproduct(p1);
+	web.addproduct(p2);
+	web.addproduct(p3);
+	web.addproduct(p4);
+	web.addproduct(p5);
+	web.addproduct(p6);
+}
 	 // ////////////////////////////////////////////
 
  public void login(){
@@ -36,6 +51,7 @@ public class shoppingSystem {
 	        	if (c_temp.verify(password)){	        		
 		            redo1 = false;
 		            System.out.println("login successfully");
+		            web.setaccount(c_temp);
 		            c_temp.list();
 		        
 	        	}else{System.out.println("password not correct");
@@ -113,6 +129,7 @@ public class shoppingSystem {
 			account new_account = new account(username, password_final);
 			arraylist.add(new_account);
 			new_account.profile.createProfile();
+			web.setaccount(new_account);
 			new_account.list();
 		}
 		

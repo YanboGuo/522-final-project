@@ -6,6 +6,9 @@ public class shoppingSysten {
 	static shoppingSystem shoppingSysteminstance = new shoppingSystem();
 	private static Scanner systeminput;
 	public static void main(String args[]){
+	shoppingSysteminstance.runSystem();
+		
+		
 		while(true){
 		systeminput = new Scanner(System.in);
 		boolean redo = true;

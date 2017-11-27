@@ -4,13 +4,14 @@ public class account {
 	public String username = null;
 	public String password = null;
 	public Profile profile = null;
+	public shoppingcart SC = null;
 	
 	
 	public account(String username, String password){
 		this.username= username;
 		this.password = password;
 		this.profile = new Profile(username, password, this);
-		
+		this.SC = new shoppingcart();
 	}
 	
 	public boolean verify(String pd){
@@ -29,21 +30,35 @@ public class account {
 		System.out.println("4: Payment Method");
 		System.out.println("5: Home");
 		System.out.println("6: Sign out");
-		int Number = accountscanner.nextInt();
-		accountscanner.nextLine();
-		if(Number == 1){
-			this.profile.list();}
-		else if(Number == 2){			
+		if(accountscanner.hasNextInt()){
+			int Number = accountscanner.nextInt();
+			accountscanner.nextLine();
+			if(Number == 1){
+				this.profile.list();}
+			else if(Number == 2){			
+				}
+			else if(Number == 5){
+				shoppingSystem.web.list();
 			}
-	
-		else if(Number == 6){
-			this.Signout();
-			}
+		
+			else if(Number == 6){
+				this.Signout();
+				}
+			
+					
+			else{ 
 				
-		else{ this.list();
+				System.out.println("Please enter the right number");
+				this.list();
+				
+				}
 		}
 		
-		
+		else{
+			accountscanner.nextLine();
+			System.out.println("Please enter the right number");
+			this.list();
+		}
 
    }
    public void Signout(){

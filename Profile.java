@@ -25,47 +25,56 @@ public class Profile {
 	System.out.println("6: View my Profile");
 	System.out.println("7: Return to last page");
 	
-	int Number = profilescanner.nextInt();
-	profilescanner.nextLine();
-	if(Number == 1){
-		System.out.println("Your current username is: " + this.username);
-		System.out.println("Please provide your new username");
-		String newusername = profilescanner.nextLine();
-		updateUsername(newusername);
+	if(profilescanner.hasNextInt()){
 		
-		
-	}
-	else if(Number == 2){
-		System.out.println("Your current address is: " + this.address);
-		System.out.println("Please provide your new address");
-		String newaddress = profilescanner.nextLine();
-		updateAddress(newaddress);
-		
-	}
-	else if(Number == 3){
-		System.out.println("Your current phone number is: " + this.phonenumber);
-		System.out.println("Please provide your new phone number");
-		String newphoneNo = profilescanner.nextLine();
-		updateEmail(newphoneNo);
-		
-	}
-	else if(Number == 4){
-		System.out.println("Your current email address is: " + this.email);
-		System.out.println("Please provide your new email address");
-		String newemail = profilescanner.nextLine();
-		updateEmail(newemail);
-				
-	}
-	else if(Number == 5){ 
-		updatePassword();
-	}
-	else if(Number == 6){
-		viewMyProfile();
-	}
-	else if(Number == 7){
-		account.list();
+		int Number = profilescanner.nextInt();
+		profilescanner.nextLine();
+		if(Number == 1){
+			System.out.println("Your current username is: " + this.username);
+			System.out.println("Please provide your new username");
+			String newusername = profilescanner.nextLine();
+			updateUsername(newusername);
+			
+			
+		}
+		else if(Number == 2){
+			System.out.println("Your current address is: " + this.address);
+			System.out.println("Please provide your new address");
+			String newaddress = profilescanner.nextLine();
+			updateAddress(newaddress);
+			
+		}
+		else if(Number == 3){
+			System.out.println("Your current phone number is: " + this.phonenumber);
+			System.out.println("Please provide your new phone number");
+			String newphoneNo = profilescanner.nextLine();
+			updateEmail(newphoneNo);
+			
+		}
+		else if(Number == 4){
+			System.out.println("Your current email address is: " + this.email);
+			System.out.println("Please provide your new email address");
+			String newemail = profilescanner.nextLine();
+			updateEmail(newemail);
+					
+		}
+		else if(Number == 5){ 
+			updatePassword();
+		}
+		else if(Number == 6){
+			viewMyProfile();
+		}
+		else if(Number == 7){
+			account.list();
+		}
+		else{
+			System.out.println("Please enter the right number");
+			this.list();
+		}
 	}
 	else{
+		profilescanner.nextLine();
+		System.out.println("Please enter the right number");
 		this.list();
 	}
 	}
