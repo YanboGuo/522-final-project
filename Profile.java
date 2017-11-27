@@ -33,6 +33,7 @@ public class Profile {
 		String newusername = profilescanner.nextLine();
 		updateUsername(newusername);
 		
+		
 	}
 	else if(Number == 2){
 		System.out.println("Your current address is: " + this.address);
@@ -121,6 +122,7 @@ public class Profile {
 		System.out.println("Your address is: " + this.address);
 		System.out.println("Your phone number is: " + this.phonenumber);
 		System.out.println("Your email address is: " + this.email);
+		this.list();
 
 	}
 	

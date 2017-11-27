@@ -30,23 +30,20 @@ public class account {
 		System.out.println("5: Home");
 		System.out.println("6: Sign out");
 		int Number = accountscanner.nextInt();
-		switch(Number){
-		case 1: this.profile.list();
-				break;
-		case 2: 
-				break;
-		case 3: 
-				break;
-		case 4: 
-				break;
-		case 5: 
-				break;
-		case 6: this.Signout();
-				break;
-		default: this.list();
-				break;
-		}
 		accountscanner.nextLine();
+		if(Number == 1){
+			this.profile.list();}
+		else if(Number == 2){			
+			}
+	
+		else if(Number == 6){
+			this.Signout();
+			}
+				
+		else{ this.list();
+		}
+		
+		
 
    }
    public void Signout(){

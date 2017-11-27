@@ -1,5 +1,8 @@
 import java.util.*;
 
+import com.google.java.contract.Ensures;
+import com.google.java.contract.Requires;
+
 public class shoppingSystem {
 	 
 	public static ArrayList<account> arraylist;
@@ -11,7 +14,7 @@ public class shoppingSystem {
 		arraylist = new ArrayList<account>();
 	}
 	 // ////////////////////////////////////////////
-	
+
  public void login(){
 		 
 		 String username;
@@ -44,7 +47,8 @@ public class shoppingSystem {
 		}// end while
 		
 	 } 	 //end login	
- 
+  @Requires("checkuser != null")
+  @Ensures("arraylist != null")
  	public account find(String checkuser){
  		account findaccount = null;
  		for(account c : arraylist){
@@ -56,6 +60,8 @@ public class shoppingSystem {
  		return findaccount;
  	}
 	// //////////////////////////////////////////////////
+ 	@Requires("true")
+ 	@Ensures({"arraylist.size() = old(arralylist.size()) + 1 "})
 	public void register(){
 		String password_final = "None";
 		String username = "None";
@@ -119,6 +125,9 @@ public class shoppingSystem {
 		
 	}
 	
+	
+	 @Requires({"username != null","arraylist != null" })
+	 @Ensures("type(result) == boolean")
 	private boolean checkAvailability(String username){
 		boolean Availability = false;
 		for(account c1 : arraylist){
